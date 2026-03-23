@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Código do Lucro Invisível</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap');
+
+        :root {
+            --primary: 134 76 61; /* emerald */
+        }
+        
+        .tail-container {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2a1f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            animation: pulse 15s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+
+        .section {
+            scroll-margin-top: 80px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: rgb(16 185 129);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: rgb(16 185 129);
+            transition: width 0.4s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+
+        .waste-bar {
+            height: 12px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            transition: width 2s ease;
+        }
+    </style>
+</head>
+<body class="tail-container bg-zinc-950 text-white overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center text-2xl">🌍</div>
+                <h1 class="logo-font text-2xl font-semibold tracking-tighter">CÓDIGO INVISÍVEL</h1>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#hero" class="nav-link">Início</a>
+                <a href="#smartphones" class="nav-link">Smartphones</a>
+                <a href="#lucro" class="nav-link">Lucro vs Planeta</a>
+                <a href="#exemplos" class="nav-link">Exemplos</a>
+                <a href="#encerrando" class="nav-link">Desafio</a>
+            </div>
+
+            <a href="#contato" 
+               class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 transition-all rounded-2xl font-semibold text-sm flex items-center gap-2">
+                <i class="fas fa-paper-plane"></i>
+                CONTATO
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center relative">
+        <div class="max-w-7xl mx-auto px-6 pt-20">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-3xl text-sm mb-8">
+                    <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+                    ENGENHARIA • DADOS • SUSTENTABILIDADE
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold logo-font tracking-tighter leading-none mb-6">
+                    O CÓDIGO DO<br>LUCRO<br><span class="text-emerald-400">INVISÍVEL</span>
+                </h1>
+                
+                <p class="text-2xl text-zinc-300 max-w-lg mb-12">
+                    Transforme resíduos em receita. <span class="text-emerald-300">Sustentabilidade não é custo — é a maior vantagem competitiva da década.</span>
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#smartphones" 
+                       class="group px-10 py-5 bg-white text-zinc-950 font-semibold rounded-3xl flex items-center gap-3 hover:scale-105 transition-all">
+                        COMEÇAR A JORNADA
+                        <i class="fas fa-arrow-right group-hover:translate-x-2 transition"></i>
+                    </a>
+                    
+                    <a href="#contato" 
+                       class="px-10 py-5 border border-white/30 hover:border-white/70 rounded-3xl flex items-center gap-3 transition-all">
+                        FALE COMIGO
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 flex flex-col items-center gap-2 text-xs tracking-widest">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+            <span class="opacity-60">ROLE PARA DESCOBRIR</span>
+        </div>
+
+        <!-- Floating phone -->
+        <div class="hidden lg:block absolute right-10 bottom-20 w-64 rotate-12">
+            <img src="https://picsum.photos/id/1015/800/1200" alt="Smartphone" 
+                 class="w-full drop-shadow-2xl rounded-3xl border border-white/10">
+            <div class="absolute -top-6 -right-6 bg-emerald-500 text-xs font-bold px-6 py-2 rounded-2xl shadow-xl">
+                80 KG DE RESÍDUO
+            </div>
+        </div>
+    </section>
+
+    <!-- SMARTPHONES SECTION -->
+    <section id="smartphones" class="section py-32 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Texto -->
+                <div class="reveal" id="reveal-smart">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-px bg-emerald-500"></div>
+                        <span class="uppercase tracking-widest text-emerald-400 font-medium">EXEMPLO REAL</span>
+                    </div>
+                    <h2 class="text-5xl font-bold logo-font tracking-tight mb-8">Smartphones</h2>
+                    
+                    <div class="text-xl leading-relaxed text-zinc-300">
+                        Imagine que você está em uma linha de produção de smartphones. 
+                        <span class="text-white font-medium">Para cada aparelho de 200 gramas</span> que sai da fábrica, 
+                        cerca de <span class="stat-number" id="waste-kg">80</span> quilos de resíduos foram gerados lá atrás, 
+                        na mineração e no refino.
+                    </div>
+                    
+                    <div class="mt-12 bg-zinc-800/50 border border-white/10 p-8 rounded-3xl">
+                        <p class="text-lg italic">
+                            “Se você é um pequeno empresário, você acabou de jogar <span class="font-bold text-emerald-400">99%</span> 
+                            do seu potencial de matéria-prima no lixo antes mesmo do cliente abrir a caixa.”
+                        </p>
+                    </div>
+                    
+                    <!-- Barra interativa -->
+                    <div class="mt-12">
+                        <div class="flex justify-between text-sm mb-3">
+                            <span class="font-medium">Produto final</span>
+                            <span class="font-medium text-emerald-400">Resíduo gerado</span>
+                        </div>
+                        <div class="h-4 bg-zinc-800 rounded-3xl overflow-hidden">
+                            <div id="waste-bar" class="waste-bar w-0"></div>
+                        </div>
+                        <div class="flex justify-between text-xs mt-2 text-zinc-400">
+                            <span>200 g</span>
+                            <span id="waste-text">80 kg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual -->
+                <div class="reveal flex justify-center">
+                    <div class="relative w-80">
+                        <div class="bg-gradient-to-br from-emerald-500/10 to-transparent p-8 rounded-3xl border border-emerald-500/30">
+                            <img src="https://picsum.photos/id/1015/600/800" alt="Smartphone na linha de produção" 
+                                 class="rounded-2xl shadow-2xl w-full">
+                        </div>
+                        
+                        <!-- Stats flutuantes -->
+                        <div class="absolute -top-6 -left-6 bg-zinc-900 border border-emerald-400/50 rounded-2xl p-5 shadow-xl">
+                            <div class="text-4xl font-bold text-emerald-400">99%</div>
+                            <div class="text-xs tracking-widest">DESPERDIÇADO</div>
+                        </div>
+                        
+                        <div onclick="animateCounter()" 
+                             class="absolute -bottom-8 right-8 bg-zinc-900 border border-white/30 hover:border-emerald-400 rounded-2xl p-6 text-center cursor-pointer transition-all active:scale-95">
+                            <i class="fas fa-recycle text-4xl mb-3 text-emerald-400"></i>
+                            <div class="text-sm font-medium">Clique para ver o impacto</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LUCRO VS PLANETA -->
+    <section id="lucro" class="section py-32 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold logo-font tracking-tight mb-4">Lucro vs. Planeta?</h2>
+                <p class="text-xl text-zinc-400 max-w-md mx-auto">O maior mito da década</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Card 1 -->
+                <div class="card-hover bg-zinc-900 rounded-3xl p-10 border border-red-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fas fa-exclamation-triangle text-4xl text-red-400"></i>
+                        <div>
+                            <div class="font-bold text-red-400 text-xl">MODELO LINEAR</div>
+                            <div class="text-xs uppercase tracking-widest">Obsolescência programada</div>
+                        </div>
+                    </div>
+                    <ul class="space-y-6 text-zinc-300">
+                        <li class="flex gap-4"><span class="text-red-400">×</span> Recursos finitos e voláteis</li>
+                        <li class="flex gap-4"><span class="text-red-400">×</span> Alto risco de negócio</li>
+                        <li class="flex gap-4"><span class="text-red-400">×</span> Custo escondido crescente</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-hover bg-zinc-900 rounded-3xl p-10 border border-emerald-500/30 bg-gradient-to-br from-emerald-900/20 to-transparent">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fas fa-shield-alt text-4xl text-emerald-400"></i>
+                        <div>
+                            <div class="font-bold text-emerald-400 text-xl">SUSTENTABILIDADE</div>
+                            <div class="text-xs uppercase tracking-widest">Eficiência sistêmica</div>
+                        </div>
+                    </div>
+                    <p class="text-lg leading-relaxed">
+                        O conflito real não é entre o lucro e o planeta. 
+                        <strong class="text-emerald-300">Sustentabilidade é blindagem financeira.</strong><br><br>
+                        Quando sua empresa depende de recursos finitos, seu risco é altíssimo.
+                    </p>
+                    
+                    <div class="mt-10 flex items-center gap-3 text-sm">
+                        <div class="flex-1 h-px bg-emerald-400"></div>
+                        <span class="font-medium text-emerald-400">ENGENHARIA DE DESIGN</span>
+                        <div class="flex-1 h-px bg-emerald-400"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXEMPLOS PRÁTICOS -->
+    <section id="exemplos" class="section py-32 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <div class="lg:w-5/12">
+                    <span class="text-emerald-400 font-medium">INOVAÇÃO NA VEIA</span>
+                    <h2 class="text-5xl font-bold logo-font tracking-tighter mt-3 mb-8">Exemplos Práticos</h2>
+                    <div class="reveal text-xl text-zinc-300 leading-relaxed">
+                        Vejam o caso da brasileira <strong class="text-white">Natura</strong>. 
+                        Eles não vendem apenas cosméticos; eles gerenciam uma rede complexa de logística reversa e bioeconomia.
+                    </div>
+                </div>
+
+                <div class="lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card-hover bg-zinc-800 rounded-3xl p-8">
+                        <div class="text-emerald-400 mb-4">
+                            <i class="fas fa-boxes text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Logística Reversa</h3>
+                        <p class="text-zinc-400">Refis + embalagens retornáveis reduzem custo de embalagem em até 60%.</p>
+                    </div>
+                    
+                    <div class="card-hover bg-zinc-800 rounded-3xl p-8">
+                        <div class="text-emerald-400 mb-4">
+                            <i class="fas fa-users text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Bioeconomia</h3>
+                        <p class="text-zinc-400">Valor compartilhado com comunidades indígenas e acionistas ao mesmo tempo.</p>
+                    </div>
+                    
+                    <div class="md:col-span-2 bg-gradient-to-r from-emerald-900/40 to-transparent border border-emerald-500/30 rounded-3xl p-10">
+                        <div class="flex items-center gap-6">
+                            <div>
+                                <div class="text-5xl font-bold text-emerald-300">+42%</div>
+                                <div class="text-sm">FIDELIDADE DO CLIENTE</div>
+                            </div>
+                            <div class="h-12 w-px bg-white/30"></div>
+                            <p class="text-zinc-300">“Eles provaram que usar refis e logística inteligente reduz drasticamente o custo de embalagem e aumenta a fidelidade do cliente.”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENCERRANDO -->
+    <section id="encerrando" class="section py-32 bg-black relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <span class="px-6 py-3 bg-emerald-500/10 text-emerald-400 rounded-full text-sm font-medium">ÚLTIMO DESAFIO</span>
+                
+                <h2 class="text-6xl font-bold logo-font tracking-tighter mt-8 mb-12 leading-none">
+                    Pare de projetar<br>objetos para o aterro.
+                </h2>
+                
+                <div class="max-w-2xl mx-auto text-2xl text-zinc-300 leading-relaxed">
+                    Se você é universitário: projete <span class="text-white">sistemas</span>.<br>
+                    Se você é empresário: pare de perguntar “quanto custa ser sustentável”.<br>
+                    Pergunte: <span class="text-emerald-300 font-medium">“quanto estou perdendo por ser linear?”</span>
+                </div>
+
+                <div class="mt-20 text-xl italic text-zinc-400 max-w-lg mx-auto">
+                    “A sustentabilidade é a maior oportunidade de inovação da nossa era. 
+                    O futuro não será feito de menos tecnologia, mas de tecnologia mais inteligente.”
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative -->
+        <div class="absolute bottom-0 right-0 text-[280px] font-black text-emerald-400/5 select-none pointer-events-none">∞</div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section py-32 bg-zinc-900">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold logo-font mb-4">Vamos conversar?</h2>
+                <p class="text-zinc-400">Quer aplicar o Código do Lucro Invisível na sua empresa ou projeto?</p>
+            </div>
+
+            <form id="contactForm" class="space-y-8">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Seu nome</label>
+                        <input type="text" id="nome" required
+                               class="w-full bg-zinc-800 border border-white/20 focus:border-emerald-400 rounded-3xl px-8 py-6 text-lg outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Email</label>
+                        <input type="email" id="email" required
+                               class="w-full bg-zinc-800 border border-white/20 focus:border-emerald-400 rounded-3xl px-8 py-6 text-lg outline-none transition-all">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-2">Sua mensagem</label>
+                    <textarea id="mensagem" rows="6" required
+                              class="w-full bg-zinc-800 border border-white/20 focus:border-emerald-400 rounded-3xl px-8 py-6 text-lg outline-none resize-none transition-all"></textarea>
+                </div>
+
+                <button type="submit"
+                        class="w-full py-8 bg-emerald-500 hover:bg-emerald-600 text-xl font-semibold rounded-3xl transition-all active:scale-[0.97]">
+                    ENVIAR MENSAGEM
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-20 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 text-center text-zinc-500 text-sm">
+            <p>© 2026 — O Código do Lucro Invisível</p>
+            <p class="mt-2">Feito com ❤️ e muito café para quem quer mudar o jogo da sustentabilidade</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tailwind script already loaded
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Reveal on scroll
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveal.classList.add('visible');
+                }
+            });
+        }
+
+        // Counter animation
+        let countersAnimated = false;
+        
+        function animateCounter() {
+            if (countersAnimated) return;
+            countersAnimated = true;
+            
+            const wasteKg = document.getElementById('waste-kg');
+            const wasteBar = document.getElementById('waste-bar');
+            const wasteText = document.getElementById('waste-text');
+            
+            let count = 0;
+            const target = 80;
+            
+            const interval = setInterval(() => {
+                count += 3;
+                wasteKg.textContent = count;
+                wasteBar.style.width = `${(count / target) * 100}%`;
+                wasteText.textContent = `${count} kg`;
+                
+                if (count >= target) {
+                    clearInterval(interval);
+                    wasteKg.textContent = "80";
+                    wasteText.textContent = "80 kg";
+                }
+            }, 30);
+        }
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nome').value;
+            
+            // Simulação de envio com feedback
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = `
+                <i class="fas fa-check mr-3"></i>
+                MENSAGEM ENVIADA COM SUCESSO!
+            `;
+            btn.style.backgroundColor = '#10b981';
+            
+            setTimeout(() => {
+                alert(`Obrigado, ${nome}! Sua mensagem foi recebida. Vamos conversar sobre sustentabilidade em breve. 🌱`);
+                this.reset();
+                btn.innerHTML = originalText;
+                btn.style.backgroundColor = '';
+            }, 1800);
+        });
+
+        // Performance: throttle scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    revealOnScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Inicialização
+        window.onload = function() {
+            // Primeira revelação
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 800);
+
+            // Demo do contador ao chegar na seção
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    setTimeout(() => {
+                        animateCounter();
+                    }, 800);
+                    observer.disconnect();
+                }
+            }, { threshold: 0.6 });
+            
+            const smartSection = document.getElementById('smartphones');
+            if (smartSection) observer.observe(smartSection);
+        };
+
+        // Tecla ESC fecha qualquer coisa (performance)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                // futuro: fechar modais se existirem
+            }
+        });
+    </script>
+</body>
+</html>
